@@ -3,7 +3,10 @@ package rocks.zipcodewilmington;
 import org.junit.Assert;
 import org.junit.Test;
 import rocks.zipcodewilmington.animals.Cat;
+import rocks.zipcodewilmington.animals.Animal;
+import rocks.zipcodewilmington.animals.Mammal;
 
+import java.time.Instant;
 import java.util.Date;
 
 /**
@@ -40,4 +43,72 @@ public class CatTest {
         Assert.assertEquals(givenId, retrievedId);
     }
 
+    @Test
+    public void setBirthDateTest() {
+        //given
+        Cat cat = new Cat("bob", new Date(), 3);
+        //when
+        Date expected = new Date(2000, 11, 11);
+        cat.setBirthDate(new Date(2000, 11, 11));
+        Date actual = cat.getBirthDate();
+        //then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void speakTest() {
+        //given
+        Cat cat = new Cat("bob", new Date(), 3);
+        String expected = "meow!";
+        //when
+
+        String actual = cat.speak();
+        //then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void eatTest() {
+        //given
+        Cat cat = new Cat("bob", new Date(), 3);
+        Food food = new Food();
+        Integer expected = 1;
+        //when
+        cat.eat(food);
+        Integer actual = cat.getNumberOfMealsEaten();
+        //then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getIdTest() {
+        //given
+        Cat cat = new Cat("bob", new Date(), 3);
+        //when
+        Integer expected = 3;
+        Integer actual = cat.getId();
+        //then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void instanceOfAnimalTest() {
+        //given
+        Cat cat = new Cat("bob", new Date(), 3);
+        //when
+
+        //then
+        Assert.assertTrue(cat instanceof Animal);
+
+    }
+
+    @Test
+    public void instanceOfMammalTest() {
+        //given
+        Cat cat = new Cat("bob", new Date(), 3);
+        //when
+        //then
+        Assert.assertTrue(cat instanceof Mammal);
+
+    }
 }
